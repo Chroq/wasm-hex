@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import BottomBoard from "./components/boards/BottomBoard";
+import Board from "./components/boards/Board";
 
 const App = () => {
   return (
@@ -10,16 +11,7 @@ const App = () => {
         display: "flex",
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          padding: "2%",
-          height: "80%",
-          width: "80%"
-        }}
-      >
-        <BottomBoard />
-      </div>
+      <Board />
     </div>
   );
 };
