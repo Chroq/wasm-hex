@@ -15,6 +15,10 @@ start: ## Start project
 	@echo "Start the project"
 	cd www && npm run start 
 
+dev: ## Start project with debug and hot reload
+	@echo "Start the project (dev)"
+	cd www && npm run dev 
+
 test: ## Launch the project's tests
 	@echo "Launch the tests"
 	wasm-pack test --headless --firefox

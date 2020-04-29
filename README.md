@@ -39,6 +39,13 @@ make start
 
 ```
 
+### Run in browser with debug and hot reloading
+
+```
+make dev
+
+```
+
 You can now see the running app into <a href="http://localhost:8080/">your default web browser</a>.
 
 ### Test in Headless Browsers with `wasm-pack test`
