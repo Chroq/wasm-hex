@@ -1,17 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import BottomBoard from "./components/boards/BottomBoard";
-import Board from "./components/boards/Board";
+import PlayBoard from "./components/boards/PlayBoard";
 
 const App = () => {
   return (
-    <div
-      style={{
-        backgroundColor: "#222222",
-        display: "flex",
-      }}
-    >
-      <Board />
+    <div style={{ display: "flex" }}>
+      <PlayBoard />
     </div>
   );
 };
