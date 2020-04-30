@@ -24,7 +24,7 @@ const PlayBoard = (props) => {
       <div
         style={{
           position: "relative",
-          margin: "2%",
+          margin: "1%",
           "&::after": {
             content: `''`,
             display: "block",

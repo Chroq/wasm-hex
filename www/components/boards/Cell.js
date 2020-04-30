@@ -1,6 +1,7 @@
 import * as React from "react";
 
-const EMPTY_COLOR = "#555";
+const EMPTY_STOP_COLOR = "#AAA";
+const EMPTY_COLOR = "#999";
 const EMPTY = 0;
 
 const Cell = ({ value, style, ...props }) => {
@@ -17,10 +18,17 @@ const Cell = ({ value, style, ...props }) => {
         ...style,
       }}
     >
+      <defs>
+        <linearGradient id="cellGradient">
+          <stop offset="25%" stop-color={EMPTY_STOP_COLOR} />
+          <stop offset="75%" stop-color={getColor(value)} />
+        </linearGradient>
+      </defs>
+
       <path
         d="M73.134 63.373l-36.5 21.074L.133 63.374V21.227L36.632.153l36.5 21.073z"
-        fill={getColor(value)}
-        stroke="#ffffff"
+        fill="url(#cellGradient)"
+        stroke="#111"
         strokeWidth={1.5}
       />
     </svg>
