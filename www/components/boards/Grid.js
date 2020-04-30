@@ -16,7 +16,7 @@ const Grid = ({ grid, ...props }) => {
   return (
     <div
       {...props}
-      style={{ position: "absolute", height: "90%", width: "90%", top: "6%", left: "5%" }}
+      style={{ position: "absolute", height: "90%", width: "90%", top: "6%", left: "4.8%" }}
     >
       {Array.from(grid).map((value, index) => {
         const rowIndex = Math.floor(index / size);
