@@ -5,8 +5,10 @@ import { memory } from "wasm-hex/wasm_hex_bg";
 import Grid from "./Grid";
 import { getBoardRatio } from "./position";
 
+const DEFAULT_SIZE = 11;
+
 const PlayBoard = (props) => {
-  const [grid, setGrid] = React.useState(getNewBoard());
+  const [grid, setGrid] = React.useState(getNewBoard(DEFAULT_SIZE));
 
   const size = Math.sqrt(grid.length);
   const boardRatio = getBoardRatio(size);

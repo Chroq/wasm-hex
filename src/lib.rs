@@ -1,4 +1,4 @@
-mod board;
+pub mod board;
 mod utils;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global

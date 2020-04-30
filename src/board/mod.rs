@@ -11,35 +11,24 @@ pub enum Cell {
 
 #[wasm_bindgen]
 pub struct Board {
-    width: u32,
-    height: u32,
     cells: Vec<Cell>,
 }
 
 #[wasm_bindgen]
 impl Board {
-    pub fn new() -> Board {
-        let width = 11;
-        let height = 11;
+    pub fn new(size: u8) -> Board {
+        let cells = (0..size * size).map(|_i| Cell::Empty).collect();
 
-        let cells = (0..width * height).map(|i| Cell::Empty).collect();
-
-        Board {
-            width,
-            height,
-            cells,
-        }
-    }
-
-    pub fn width(&self) -> u32 {
-        self.width
-    }
-
-    pub fn height(&self) -> u32 {
-        self.height
+        Board { cells }
     }
 
     pub fn cells(&self) -> *const Cell {
         self.cells.as_ptr()
+    }
+}
+
+impl Board {
+    pub fn get_cells(&self) -> &[Cell] {
+        &self.cells
     }
 }
