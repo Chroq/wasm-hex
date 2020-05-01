@@ -16,8 +16,8 @@ const PlayBoard = (props) => {
   return (
     <div
       style={{
-        display: "flex",
-        height: "80%",
+        alignSelf: "start",
+        justifySelf: "center",
         width: "80%",
       }}
     >
