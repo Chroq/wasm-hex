@@ -5,12 +5,14 @@ import { memory } from "wasm-hex/wasm_hex_bg";
 import Grid from "./Grid";
 import { getBoardRatio } from "./position";
 
-const DEFAULT_SIZE = 11;
+const PlayBoard = ({size, ...props}) => {
+  if (!size) {
+    return <></>;
+  }
 
-const PlayBoard = (props) => {
-  const [grid, setGrid] = React.useState(getNewBoard(DEFAULT_SIZE));
+  console.log(size);
 
-  const size = Math.sqrt(grid.length);
+  const [grid, setGrid] = React.useState(getNewBoard(size));
   const boardRatio = getBoardRatio(size);
 
   return (
@@ -45,10 +47,10 @@ const PlayBoard = (props) => {
  *
  * @returns {Uint8Array} board
  */
-const getNewBoard = () => {
-  const board = Board.new();
+const getNewBoard = (size) => {
+  const board = Board.new(size);
   const cellsPtr = board.cells();
-  return new Uint8Array(memory.buffer, cellsPtr, 11 * 11);
+  return new Uint8Array(memory.buffer, cellsPtr, size * size);
 };
 
 export default PlayBoard;
