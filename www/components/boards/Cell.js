@@ -20,8 +20,8 @@ const Cell = ({ value, style, ...props }) => {
     >
       <defs>
         <linearGradient id="cellGradient">
-          <stop offset="25%" stop-color={EMPTY_STOP_COLOR} />
-          <stop offset="75%" stop-color={getColor(value)} />
+          <stop offset="25%" stopColor={EMPTY_STOP_COLOR} />
+          <stop offset="75%" stopColor={getColor(value)} />
         </linearGradient>
       </defs>
 
