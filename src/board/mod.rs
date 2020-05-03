@@ -25,6 +25,13 @@ impl Board {
     pub fn cells(&self) -> *const Cell {
         self.cells.as_ptr()
     }
+    pub fn update_cell(&mut self, index: usize, new_cell: Cell) -> Board {
+        let mut cells = self.cells.clone();
+
+        cells[index] = new_cell;
+
+        Board { cells }
+    }
 }
 
 impl Board {
