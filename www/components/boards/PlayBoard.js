@@ -10,8 +10,6 @@ const PlayBoard = ({size, ...props}) => {
     return <></>;
   }
 
-  console.log(size);
-
   const [grid, setGrid] = React.useState(getNewBoard(size));
   const boardRatio = getBoardRatio(size);
 

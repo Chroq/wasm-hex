@@ -5,7 +5,7 @@ const Panel = ({ size, onNewGameAsked, ...props }) => {
     onNewGameAsked();
   };
 
-  const style = size
+  const style = !size
     ? {
         margin: "auto",
         borderRight: "1px #000 solid",
