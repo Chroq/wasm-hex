@@ -7,16 +7,26 @@ import {
   getCellHeight,
 } from "./position";
 
-const Grid = ({ grid, ...props }) => {
+const Grid = ({ grid, onMovePlayed, ...props }) => {
   const size = Math.sqrt(grid.length);
 
   const cellWidth = getCellWidth(size);
   const cellHeight = getCellHeight(size);
 
+  const handleCellOnClick = (cellIndex) => {
+    onMovePlayed({ cellIndex });
+  };
+
   return (
     <div
       {...props}
-      style={{ position: "absolute", height: "90%", width: "90%", top: "6%", left: "4.8%" }}
+      style={{
+        position: "absolute",
+        height: "90%",
+        width: "90%",
+        top: "6%",
+        left: "4.8%",
+      }}
     >
       {Array.from(grid).map((value, index) => {
         const rowIndex = Math.floor(index / size);
@@ -38,6 +48,7 @@ const Grid = ({ grid, ...props }) => {
             value={value}
             aria-label={`Cell at row ${rowIndex} and column ${columnIndex}`}
             role="button"
+            onClick={() => handleCellOnClick(index)}
           />
         );
       })}

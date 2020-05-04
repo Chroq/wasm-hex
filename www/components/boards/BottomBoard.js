@@ -1,7 +1,5 @@
 import * as React from "react";
-
-const FIRST_PLAYER_COLOR = "#EEE";
-const SECOND_PLAYER_COLOR = "#111";
+import { WHITE_COLOR, BLACK_COLOR } from "./Cell";
 
 const BottomBoard = (props) => {
   return (
@@ -12,25 +10,25 @@ const BottomBoard = (props) => {
     >
       <g>
         <path
-          fill={FIRST_PLAYER_COLOR}
+          fill={WHITE_COLOR}
           stroke="black"
           strokeLinejoin="bevel"
           d="M.781 2.23c2.582-4.473 0 0 116.603-1.962l-30 51.962L.78 2.23z"
         />
         <path
-          fill={FIRST_PLAYER_COLOR}
+          fill={WHITE_COLOR}
           stroke="black"
           strokeLinejoin="bevel"
           d="M173.986 102.23c-2.582 4.473 0 0-116.602 1.962l30-51.962 86.602 50z"
         />
         <path
-          fill={SECOND_PLAYER_COLOR}
+          fill={BLACK_COLOR}
           stroke="black"
           strokeLinejoin="bevel"
           d="M.781 2.23c-2.582 4.473 0 0 56.603 101.962l30-51.962L.78 2.23z"
         />
         <path
-          fill={SECOND_PLAYER_COLOR}
+          fill={BLACK_COLOR}
           stroke="black"
           strokeLinejoin="bevel"
           d="M173.986 102.23c2.583-4.473 0 0-56.602-101.962l-30 51.962 86.602 50z"
