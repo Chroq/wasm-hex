@@ -7,7 +7,6 @@ help:
 
 install: ## Install project's dependencies
 	@echo "Install project deps"
-	npm install
 	wasm-pack build
 	cd www && npm install
 
