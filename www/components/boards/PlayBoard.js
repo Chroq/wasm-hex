@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Board, Cell } from "wasm-hex";
+import { Board, Cell, Player } from "wasm-hex";
 import BottomBoard from "./BottomBoard";
 import { memory } from "wasm-hex/wasm_hex_bg";
 import Grid from "./Grid";
@@ -11,15 +11,20 @@ const PlayBoard = ({ size, ...props }) => {
   }
 
   const [board, setBoard] = React.useState(Board.new(size));
+  const [player, setPlayer] = React.useState(Player.First);
+
   const grid = getGridFromBoard(board, size);
-  console.log(grid);
 
   const boardRatio = getBoardRatio(size);
 
   React.useEffect(() => {}, [grid]);
 
   const onMovePlayed = ({ cellIndex }) => {
-    setBoard(board.update_cell(parseInt(cellIndex), Cell.White));
+    if (player === Player.First) {
+      const updatedBoard = board.update_cell(parseInt(cellIndex), player);
+      setBoard(updatedBoard);
+      setPlayer(updatedBoard.get_player());
+    }
   };
 
   return (
