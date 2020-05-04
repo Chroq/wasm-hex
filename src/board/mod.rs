@@ -3,6 +3,14 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 #[repr(u8)]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Player {
+    First = 1,
+    Second = 2,
+}
+
+#[wasm_bindgen]
+#[repr(u8)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Cell {
     Empty = 0,
     White = 1,
@@ -10,6 +18,7 @@ pub enum Cell {
 }
 
 #[wasm_bindgen]
+#[derive(Debug)]
 pub struct Board {
     cells: Vec<Cell>,
 }
@@ -25,12 +34,33 @@ impl Board {
     pub fn cells(&self) -> *const Cell {
         self.cells.as_ptr()
     }
-    pub fn update_cell(&mut self, index: usize, new_cell: Cell) -> Board {
+    pub fn update_cell(&mut self, index: usize, player: Player) -> Board {
         let mut cells = self.cells.clone();
 
-        cells[index] = new_cell;
+        cells[index] = if player == Player::First {
+            Cell::White
+        } else {
+            Cell::Black
+        };
 
         Board { cells }
+    }
+
+    pub fn get_player(&self) -> Player {
+        let is_even = self.cells.len() % 2 == 0;
+
+        let empty_cells_count = self
+            .cells
+            .iter()
+            .filter(|&&cell| cell == Cell::Empty)
+            .count();
+        return if is_even && empty_cells_count % 2 == 0 {
+            Player::First
+        } else if !is_even && empty_cells_count % 2 == 1 {
+            Player::First
+        } else {
+            Player::Second
+        };
     }
 }
 
