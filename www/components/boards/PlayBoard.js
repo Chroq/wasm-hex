@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Board, Cell, Player } from "wasm-hex";
-import BottomBoard from "./BottomBoard";
+import { Board, Player } from "wasm-hex";
 import { memory } from "wasm-hex/wasm_hex_bg";
+import BottomBoard from "./BottomBoard";
 import Grid from "./Grid";
 import { getBoardRatio } from "./position";
 
@@ -21,9 +21,17 @@ const PlayBoard = ({ size, ...props }) => {
 
   const onMovePlayed = ({ cellIndex }) => {
     if (player === Player.First) {
-      const updatedBoard = board.update_cell(parseInt(cellIndex), player);
-      setBoard(updatedBoard);
-      setPlayer(updatedBoard.get_player());
+      const playerBoardState = board.update_cell(parseInt(cellIndex), player);
+      const nextPlayer = playerBoardState.get_player();
+      setBoard(playerBoardState);
+      setPlayer(playerBoardState.get_player());
+
+      // Computer turn
+      if (nextPlayer !== player) {
+        const opponentBoardState = playerBoardState.play_as(nextPlayer);
+        setBoard(opponentBoardState);
+        setPlayer(opponentBoardState.get_player());
+      }
     }
   };
 
