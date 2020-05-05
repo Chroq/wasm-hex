@@ -18,7 +18,7 @@ pub enum Cell {
 }
 
 #[wasm_bindgen]
-#[derive(Debug)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Board {
     cells: Vec<Cell>,
 }
@@ -34,16 +34,23 @@ impl Board {
     pub fn cells(&self) -> *const Cell {
         self.cells.as_ptr()
     }
-    pub fn update_cell(&mut self, index: usize, player: Player) -> Board {
+    pub fn update_cell(&self, index: usize, player: Player) -> Board {
         let mut cells = self.cells.clone();
+        let reachable_cell = cells.get(index);
 
-        cells[index] = if player == Player::First {
-            Cell::White
-        } else {
-            Cell::Black
-        };
-
-        Board { cells }
+        match reachable_cell {
+            Some(&reachable_cell) => {
+                if reachable_cell == Cell::Empty {
+                    cells[index] = if player == Player::First {
+                        Cell::White
+                    } else {
+                        Cell::Black
+                    };
+                }
+                return Board { cells };
+            }
+            None => panic!("Index out of bound : {}", index),
+        }
     }
 
     pub fn get_player(&self) -> Player {
@@ -61,6 +68,17 @@ impl Board {
         } else {
             Player::Second
         };
+    }
+
+    pub fn play_as(&mut self, player: Player) -> Board {
+        let empty_cell = self
+            .cells
+            .clone()
+            .iter()
+            .position(|&cell| cell == Cell::Empty)
+            .unwrap();
+
+        return self.update_cell(empty_cell, player);
     }
 }
 

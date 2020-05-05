@@ -3,13 +3,15 @@ import { Cell as CellEnum } from "wasm-hex";
 
 export const EMPTY_COLOR = "#AAA";
 export const WHITE_COLOR = "#FAFAFA";
-export const BLACK_COLOR = "#111";
+export const BLACK_COLOR = "#191919";
 
 export const EMPTY_SECOND_COLOR = "#999";
 export const WHITE_SECOND_COLOR = "#EFEFEF";
+export const BLACK_SECOND_COLOR = "#292929";
 
 export const EMPTY_STROKE_COLOR = "#111";
 export const WHITE_STROKE_COLOR = "#AAA";
+export const BLACK_STROKE_COLOR = "#111";
 
 const Cell = ({ value, style, ...props }) => {
   const { main, second, stroke } = getColors(value);
@@ -57,6 +59,12 @@ const getColors = (value) => {
         main: WHITE_COLOR,
         second: WHITE_SECOND_COLOR,
         stroke: WHITE_STROKE_COLOR,
+      };
+    case CellEnum.Black:
+      return {
+        main: BLACK_COLOR,
+        second: BLACK_SECOND_COLOR,
+        stroke: BLACK_STROKE_COLOR,
       };
   }
 };
