@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Board, Player } from "wasm-hex";
+import { Board, Player, get_neighbors, Coord } from "wasm-hex";
 import { memory } from "wasm-hex/wasm_hex_bg";
 import BottomBoard from "./BottomBoard";
 import Grid from "./Grid";
@@ -12,6 +12,8 @@ const PlayBoard = ({ size, ...props }) => {
 
   const [board, setBoard] = React.useState(Board.new(size));
   const [player, setPlayer] = React.useState(Player.First);
+
+  get_neighbors(board, Coord.new(0, 0), player);
 
   const grid = getGridFromBoard(board, size);
 

@@ -1,3 +1,4 @@
+use std::fmt;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -17,18 +18,30 @@ pub enum Cell {
     Black = 2,
 }
 
+impl fmt::Display for Cell {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let printable = match *self {
+            Cell::Empty => "Empty",
+            Cell::White => "White",
+            Cell::Black => "Black",
+        };
+        write!(f, "{}", printable)
+    }
+}
+
 #[wasm_bindgen]
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Board {
     cells: Vec<Cell>,
+    size: usize,
 }
 
 #[wasm_bindgen]
 impl Board {
-    pub fn new(size: u8) -> Board {
+    pub fn new(size: usize) -> Board {
         let cells = (0..size * size).map(|_i| Cell::Empty).collect();
 
-        Board { cells }
+        Board { cells, size }
     }
 
     pub fn cells(&self) -> *const Cell {
@@ -37,6 +50,7 @@ impl Board {
     pub fn update_cell(&self, index: usize, player: Player) -> Board {
         let mut cells = self.cells.clone();
         let reachable_cell = cells.get(index);
+        let size = self.size;
 
         match reachable_cell {
             Some(&reachable_cell) => {
@@ -47,7 +61,7 @@ impl Board {
                         Cell::Black
                     };
                 }
-                return Board { cells };
+                return Board { cells, size };
             }
             None => panic!("Index out of bound : {}", index),
         }
@@ -85,5 +99,9 @@ impl Board {
 impl Board {
     pub fn get_cells(&self) -> &[Cell] {
         &self.cells
+    }
+
+    pub fn get_size(&self) -> &usize {
+        &self.size
     }
 }

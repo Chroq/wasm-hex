@@ -1,5 +1,6 @@
 pub mod board;
-mod utils;
+pub mod game;
+pub mod utils;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
