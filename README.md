@@ -10,6 +10,7 @@
 
 ### Rust & Rustup
 
+Rust minimal version : Rust 1.30 
 Refer to your distribution documentation for how to install Rust. We recommand to use <a href="https://github.com/rust-lang/rustup">Rustup</a>.
 
 ### NPM
@@ -22,6 +23,14 @@ Run the following command in terminal :
 
 ```
 curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
+```
+
+### Rust toolchain
+
+If you don't have rust stable toolchain installed, you can do it with this command :
+
+```
+rustup default stable
 ```
 
 ## Usage
